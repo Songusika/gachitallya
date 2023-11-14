@@ -1,0 +1,200 @@
+* {
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo";
+}
+
+.body {
+  width: 100%;
+  margin-top: 10px;
+  position: absolute;
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+input:disabled {
+  background: #ffffff;
+}
+
+input:disabled {
+  background: #ffffff;
+}
+
+.container {
+  box-sizing: border-box;
+  border: 2px solid #ededed;
+  border-radius: 12px;
+  box-shadow: 0px 2px 5px gray;
+  padding: 20px;
+  width: 700px;
+}
+
+.kakaoMap {
+  box-sizing: border-box;
+  border: 1px solid #ededed;
+  border-radius: 9px;
+  margin: 24px;
+  padding: 50px;
+  width: 700px;
+}
+
+.write .contents {
+  box-sizing: border-box;
+  border: 2px solid #ededed;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  width: 600px;
+  height: 200px;
+  padding: 10px;
+  font-size: 16px;
+  resize: none;
+}
+
+.write .title {
+  box-sizing: border-box;
+  border: 2px solid #ededed;
+  border-radius: 5px;
+  width: 600px;
+  height: 40px;
+  padding-top: 0%;
+  font-size: medium;
+}
+
+.write .location {
+  box-sizing: border-box;
+  border: 2px solid #ededed;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  width: 500px;
+  height: 40px;
+  padding: 1%;
+  margin: 0px;
+
+  font-size: medium;
+  display: inline-block;
+}
+
+.write .locationSearch {
+  box-sizing: border-box;
+  border: 2px solid #7eff8d;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #7eff8d;
+  height: 40px;
+  width: 100px;
+  padding: 0%;
+  font-size: medium;
+  display: inline-block;
+}
+
+.write .locationSearch:disabled {
+  box-sizing: border-box;
+  border: 2px solid #ededed;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #ededed;
+  height: 40px;
+  width: 100px;
+  padding: 0%;
+  font-size: medium;
+  display: inline-block;
+}
+
+.locationContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.write .selectTime {
+  box-sizing: border-box;
+  border: 2px solid #ededed;
+  border-radius: 5px;
+  width: 300px;
+  height: 40px;
+  font-weight: bold;
+}
+
+.write .crewNumber {
+  box-sizing: border-box;
+  border: 2px solid #ededed;
+  border-radius: 5px;
+  height: 40px;
+  font-weight: bold;
+  margin-left: 65px;
+}
+
+.write .description {
+  margin-top: 8px;
+  line-height: 20px;
+  color: #737373;
+  font-size: 14px;
+}
+
+.wrapper {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  /* margin: 50px auto; */
+}
+#switch {
+  position: absolute;
+  /* hidden */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.switch_label {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  width: 58px;
+  height: 28px;
+  background: #fff;
+  border: 2px solid #525252;
+  border-radius: 20px;
+  transition: 0.2s;
+}
+.switch_label:hover {
+  background: #ffffff;
+}
+.onf_btn {
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background: #525252;
+  transition: 0.2s;
+}
+
+/* checking style */
+#switch:checked + .switch_label {
+  background: #c44;
+  border: 2px solid #c44;
+}
+
+#switch:checked + .switch_label:hover {
+  background: #e55;
+}
+
+/* move */
+#switch:checked + .switch_label .onf_btn {
+  left: 34px;
+  background: #fff;
+  box-shadow: 1px 2px 3px #00000020;
+}
+
+input[type="submit"] {
+  display: block;
+  margin-top: 24px;
+  width: 100%;
+  height: 40px;
+  border: 0;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #c62917;
+}

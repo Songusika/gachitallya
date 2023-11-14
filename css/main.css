@@ -1,0 +1,66 @@
+* {
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo";
+  box-sizing: border-box;
+}
+
+.newPlanContainer {
+  box-sizing: border-box;
+  border: 2px solid #ededed;
+  border-radius: 12px;
+  margin: 24px;
+  padding: 12px;
+  box-shadow: 0px 2px 5px gray;
+  background-color: #dddddd;
+  width: 70%;
+  height: 50px;
+  margin: 10px auto;
+  display: flex;
+  font-weight: bold;
+  text-align: center;
+}
+
+.planContainer {
+  box-sizing: border-box;
+  border: 2px solid #ededed;
+  border-radius: 12px;
+  margin: 24px;
+  padding: 12px;
+  box-shadow: 0px 2px 5px gray;
+  width: 70%;
+  height: 150px;
+  margin: 10px auto;
+  display: flex;
+}
+
+.planContainer .contents1 {
+  width: 50%;
+  flex: 2;
+  box-sizing: border-box;
+}
+
+.planContainer .contents2 {
+  width: 20%;
+  flex: 1;
+  padding: 10px;
+}
+
+.planContainer .contents2 .departure {
+  text-align: left;
+  padding-top: 8px;
+}
+
+.planContainer .contents2 .arrival {
+  text-align: right;
+  padding-right: 8px;
+}
+
+.planContainer .contents3 {
+  width: 25%;
+  flex: 1;
+  float: right;
+  box-sizing: border-box;
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 40px;
+}

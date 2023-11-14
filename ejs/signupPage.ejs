@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>같이탈랴</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link type="text/css" href="/static/css/register.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="container">
+      <div>
+        <h2>같이 탈랴 회원가입</h2>
+      </div>
+      <p class="description">
+        현재 저희 서비스는 군산대에서만 운영되고 있습니다.<br />타학교 학생은
+        가입할 수 없습니다.
+      </p>
+
+      <div class="input">
+        <div class="label"><h3>군산대학교 이메일</h3></div>
+        <div>
+          <div>
+            <input
+              type="text"
+              placeholder="군산대 아이디만 적어주세요"
+              id="id"
+              onchange="notnullmail()"
+            />
+            <p class="description" style="padding: 0 8px">@kunsan.ac.kr</p>
+          </div>
+        </div>
+        <input
+          type="button"
+          id="authMail"
+          onclick="requestAuthMail()"
+          value="인증 번호 전송"
+          style="background-color: #666666"
+        />
+      </div>
+
+      <p
+        class="description"
+        style="padding: 0 8px"
+        block="none"
+        id="sendMsg"
+      ></p>
+      <div class="input">
+        <div class="label"><h3>인증 번호</h3></div>
+        <div>
+          <input
+            class="search"
+            type="text"
+            placeholder="인증 번호 요청을 먼저해주세요"
+            id="authNumber"
+            disabled
+            onchange="changeColor()"
+          />
+        </div>
+        <input
+          id="validate"
+          type="button"
+          onclick="validateAuthNumber()"
+          value="인증 완료"
+          style="background-color: #666666"
+        />
+      </div>
+    </div>
+  </body>
+  <script>
+    function notnullmail() {
+      if (document.getElementById("authMail").value == "") {
+        document.getElementById("authMail").style = "background-color:#666666";
+      } else {
+        document.getElementById("authMail").style = "background-color:#c62917";
+      }
+    }
+
+    function changeColor() {
+      if (document.getElementById("authNumber").value != "") {
+        document.getElementById("validate").style = "background-color:#c62917";
+      } else {
+        document.getElementById("validate").style = "background-color:#666666";
+      }
+    }
+
+    async function requestAuthMail() {
+      let requestData = { id: document.getElementById("id").value };
+      const response = await axios.post("/signup/validateMail", requestData, {
+        header: { "Content-Type": "application/json" },
+      });
+      document.getElementById("authNumber").placeholder = "인증 번호 입력";
+      document.getElementById("authNumber").disabled = false;
+      document.getElementById("sendMsg").innerText =
+        "인증번호가 발송되었습니다. 메일함을 확인해주세요!";
+    }
+
+    function validateAuthNumber() {
+      let requestData = {
+        id: document.getElementById("id").value,
+        authNum: document.getElementById("authNumber").value,
+      };
+
+      $.ajax({
+        type: "POST",
+        url: "/signup/checkAuth",
+        data: requestData,
+        dataType: "json",
+
+        success: function (data, textStatus, xhr) {
+          if (data == "loginFail") {
+            alert("인증번호를 다시확인해주세요.");
+            document.getElementById("authNumber").value = "";
+          } else {
+            window.location.href = data;
+          }
+        },
+        error: function (request, status, error) {
+          alert("code:" + request.status + "\n" + "error:" + error);
+        },
+      });
+    }
+  </script>
+</html>

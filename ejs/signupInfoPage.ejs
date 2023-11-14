@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>같이탈랴 회원가입</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link type="text/css" href="/static/css/register.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="container">
+      <div>
+        <h2>같이 탈랴 회원가입</h2>
+      </div>
+      <p class="description">
+        현재 저희 서비스는 군산대에서만 운영되고 있습니다.<br />타학교 학생은
+        가입할 수 없습니다.
+      </p>
+      <form action="/register" method="post">
+        <div>
+          <div class="input">
+            <div class="label"><strong>비밀번호</strong></div>
+            <p class="description" style="padding: 0 8px" block="none">
+              영문, 숫자, 특문이 2종류 이상 조합된 8~20자
+            </p>
+            <div>
+              <input type="password" placeholder="비밀번호" id="userPassword" />
+              <input
+                type="password"
+                placeholder="비밀번호 재입력"
+                name="PASSWORD"
+                id="repassword"
+                onchange="checkAll()"
+              />
+            </div>
+            <p class="description" style="padding: 0 8px" id="passMsg"></p>
+          </div>
+          <div class="input">
+            <div class="label"><strong>닉네임</strong></div>
+            <p class="description" style="padding: 0 8px">
+              한번 설정하면 바꿀 수 없습니다.
+            </p>
+            <div>
+              <input
+                type="text"
+                placeholder="닉네임"
+                name="NICKNAME"
+                id="nickname"
+                onchange="checkAll()"
+              />
+            </div>
+          </div>
+          <div class="input">
+            <div class="label"><strong>전화번호</strong></div>
+            <p class="description" style="padding: 0 8px">
+              알람을 위해서 꼭 정확한 전화번호를 적어주세요. 하이픈(-) 빼고
+              적어주세요!
+            </p>
+            <div>
+              <input
+                type="text"
+                placeholder="01012341234"
+                name="PHONE_NUMBER"
+                id="PHONE_NUMBER"
+                onchange="checkAll()"
+              />
+            </div>
+          </div>
+          <div class="input">
+            <div class="label"><strong>성별</strong></div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="GENDER"
+                id="inlineRadio1"
+                value="M"
+                onchange="checkAll()"
+              />
+              <label class="form-check-label" for="inlineRadio1">남성</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="GENDER"
+                id="inlineRadio2"
+                value="F"
+                onchange="checkAll()"
+              />
+              <label class="form-check-label" for="inlineRadio2">여성</label>
+            </div>
+          </div>
+          <div class="input">
+            <div class="label"><strong>생년월일</strong></div>
+            <div>
+              <input
+                type="date"
+                name="BIRTHDAY"
+                style="padding-top: 10px; padding-left: 10px"
+                id="date"
+                onchange="checkAll()"
+              />
+            </div>
+            <input
+              type="submit"
+              value="가입 완료"
+              style="background-color: #666666"
+              disabled
+              id="validate"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+
+  <script>
+    function isSamePassword() {
+      if (
+        document.getElementById("userPassword").value !=
+        document.getElementById("repassword").value
+      ) {
+        document.getElementById("passMsg").innerText =
+          "비밀번호를 정확하게 다시 입력하세요";
+        return false;
+      } else {
+        document.getElementById("passMsg").innerText = "";
+        return true;
+      }
+    }
+
+    function checkNickName() {
+      return !document.getElementById("nickname").value == "";
+    }
+
+    function isRadio() {
+      return (
+        document.getElementById("inlineRadio1").checked ||
+        document.getElementById("inlineRadio2").checked
+      );
+    }
+
+    function isBirth() {
+      return !(document.getElementById("date").value == "");
+    }
+
+    function checkAll() {
+      if (isSamePassword() && checkNickName() && isRadio() && isBirth()) {
+        document.getElementById("validate").style = "background-color:#c62917";
+        document.getElementById("validate").disabled = false;
+      } else {
+        document.getElementById("validate").style = "background-color:#666666";
+        document.getElementById("validate").disabled = true;
+      }
+    }
+  </script>
+</html>

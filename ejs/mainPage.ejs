@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>같이탈랴</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link type="text/css" href="/static/css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <img
+      style="padding-left: 300px; margin: 0px"
+      src="/static/resource/images/login-logo.png"
+    />
+    <div class="boardHead" style="display: flex">
+      <h2 style="flex: 1; padding-left: 300px">카풀 일정 게시판</h2>
+      <a
+        href="/mypage"
+        style="
+          margin: 19.92px 0px;
+          flex: 1;
+          text-align: right;
+          font-size: x-large;
+          font-weight: bold;
+          padding-right: 350px;
+        "
+        >마이페이지</a
+      >
+    </div>
+    <% postInfo.forEach(post=>{ %>
+    <div class="planContainer" onclick="location.href='post/<%=post.id%>'">
+      <div class="contents1">
+        <h2 class="title" style="margin: 0px"><%= post.title %></h2>
+        <p><%= post.contents%></p>
+        <p>
+          출발- <%= post.depaturesTime.substring(0, 16)%> | 마감 - <%=
+          post.deadline.substring(0, 16)%> | 작성자 - <%= post.NICKNAME%>
+        </p>
+      </div>
+
+      <div class="contents2">
+        <h3 class="departure" style="margin: 0px"><%=post.departures%></h3>
+        <h2 style="margin: 0px 120px">→</h2>
+        <h3 class="arrival" style="margin: 0px"><%=post.arrivals%></h3>
+      </div>
+
+      <div class="contents3"><%=post.currentCrew%> / <%=post.maximumCrew%></div>
+    </div>
+    <% }) %>
+  </body>
+  <script>
+    history.pushState(null, null, location.href);
+
+    window.onpopstate = function (event) {
+      history.go(1);
+    };
+  </script>
+</html>

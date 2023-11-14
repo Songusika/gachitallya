@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>같이탈랴</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link type="text/css" href="/static/css/test.css" rel="stylesheet" />
+  </head>
+  <body>
+    <img
+      style="padding-left: 300px; margin: 0px"
+      src="/static/resource/images/login-logo.png"
+    />
+    <div style="display: none" id="currentCrew"><%=postInfo.currentCrew%></div>
+    <div style="display: none" id="maximumCrew"><%=postInfo.maximumCrew%></div>
+    <form action="/reservation" method="post">
+      <textarea
+        style="display: none; width: 1px; height: 1px"
+        name="id"
+        id="id"
+      >
+<%=postInfo.id%></textarea
+      >
+      <div class="post">
+        <div class="titleContainer">
+          <h1 class="title"><%=postInfo.NICKNAME%></h1>
+
+          <div class="userTemp">36.5</div>
+
+          <div class="postDate">수정날짜: <%=postInfo.writingTime%></div>
+        </div>
+
+        <div class="container">
+          <h2><%=postInfo.title%></h2>
+          <p><%=postInfo.contents%></p>
+
+          <div class="content">
+            <div>
+              <span class="type">탑승 지역</span>
+              <%=postInfo.departures%>
+            </div>
+
+            <div>
+              <span class="type">하차 지역</span>
+              <%=postInfo.arrivals%>
+            </div>
+
+            <div>
+              <span class="type">탑승 시간</span>
+              <%=postInfo.depaturesTime%>
+              <span class="type" style="margin-left: 50px">예약 인원</span>
+              <%=postInfo.currentCrew%>/<%=postInfo.maximumCrew%>인
+            </div>
+            <button type="submit" class="rideBtn" id="rideBtn">타기!</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+  <script>
+    window.onload = function disableBtn() {
+      if (
+        Number(document.getElementById("currentCrew").innerText) >=
+        Number(document.getElementById("maximumCrew").innerText)
+      ) {
+        document.getElementById("rideBtn").disabled = true;
+      }
+    };
+  </script>
+</html>

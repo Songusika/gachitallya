@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>같이탈랴</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ac84ad830f8f35626abbfb38427881d5&libraries=services"
+    ></script>
+    <link type="text/css" href="/static/css/makePost.css" rel="stylesheet" />
+    <script type="text/javascript" src="/static/js/time.js"></script>
+    <script type="text/javascript" src="/static/js/changeDest.js"></script>
+  </head>
+  <body>
+    <img
+      style="padding-left: 300px; margin: 0px"
+      src="/static/resource/images/login-logo.png"
+    />
+    <div class="body">
+      <div class="container">
+        <h2 style="margin-top: 0px">일정등록</h2>
+        <div style="display: flex; flex-direction: row">
+          <div class="wrapper">
+            <input type="checkbox" id="switch" onclick="switchDestination()" />
+            <label for="switch" class="switch_label">
+              <span class="onf_btn"></span>
+            </label>
+          </div>
+          <div
+            style="display: inline-block; margin-left: 20px; margin-top: 4px"
+            id="destMsg"
+          >
+            학교 가보자고~!
+          </div>
+        </div>
+        <form class="write" action="/makePost" method="post">
+          <h3>제목</h3>
+          <p>
+            <input
+              name="title"
+              autocomplete="off"
+              placeholder="제목"
+              class="title"
+            />
+          </p>
+          <h3>탑승지역</h3>
+          <div class="locationContainer">
+            <input
+              class="location item1"
+              id="rideArea"
+              name="departures"
+              readonly
+            />
+            <button
+              type="button"
+              class="locationSearch item2"
+              id="rideAreaBtn"
+              onclick="findAddress(document.getElementById('rideArea'))"
+            >
+              검색
+            </button>
+          </div>
+          <h3>하차지역</h3>
+          <div class="locationContainer">
+            <input
+              class="location item1"
+              id="exitArea"
+              name="arrivals"
+              value="군산대학교"
+              readonly
+            />
+            <button
+              type="button"
+              class="locationSearch item2"
+              id="exitAreaBtn"
+              onclick="findAddress(document.getElementById('exitArea'))"
+              disabled
+            >
+              검색
+            </button>
+          </div>
+          <div
+            class="kakaoMap"
+            id="map"
+            style="width: 400px; height: 300px"
+          ></div>
+          <div>
+            <h3 style="display: inline-block">탑승시간</h3>
+            <h3 style="display: inline-block; padding-left: 50%">탑승인원</h3>
+          </div>
+          <div>
+            <input
+              type="datetime-local"
+              name="depaturesTime"
+              id="time"
+              class="selectTime"
+            />
+            <select name="maximumCrew" id="crewNumber" class="crewNumber">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+          <div class="description">
+            게시글 마감시간은 탑승시간 30분 전입니다!
+          </div>
+
+          <h3>내용</h3>
+          <textarea
+            class="contents"
+            id="contents"
+            name="contents"
+            onclick="clearContents()"
+          >
+내용을 입력해주세요. 탑승 지역 및 세부 내용을 알려주세요!</textarea
+          >
+          <input type="submit" value="등록" />
+        </form>
+      </div>
+    </div>
+  </body>
+  <script>
+    window.onload = initTimeTag();
+
+    var mapContainer = document.getElementById("map"),
+      mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3,
+      };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    function changeMarker(fieldValue) {
+      geocoder.addressSearch(fieldValue, function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+          var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+          var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords,
+          });
+
+          map.setCenter(coords);
+        }
+      });
+    }
+
+    function findAddress(field) {
+      new daum.Postcode({
+        oncomplete: function (data) {
+          let roadAddr = data.roadAddress;
+          field.value = roadAddr;
+          changeMarker(field.value);
+        },
+      }).open();
+    }
+  </script>
+</html>

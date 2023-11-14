@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>같이탈랴 로그인</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link type="text/css" href="/static/css/login.css" rel="stylesheet" />
+  </head>
+
+  <body style>
+    <div id="container" class="login">
+      <h1 class="logo">
+        <a href="/">같이탈랴</a>
+      </h1>
+      <form action="/user/login" method="post" id="login">
+        <p class="input">
+          <input
+            type="text"
+            name="email"
+            maxlength="50"
+            class="text"
+            id="email"
+            placeholder="군산대 이메일"
+            onkeypress="enterPressed()"
+          />
+        </p>
+        <p class="input">
+          <input
+            type="password"
+            name="password"
+            maxlength="20"
+            class="text"
+            id="password"
+            placeholder="비밀번호"
+            onkeypress="enterPressed()"
+          />
+        </p>
+        <p class="submit">
+          <input
+            type="button"
+            value="로그인"
+            class="text"
+            onclick="formCheck()"
+          />
+        </p>
+        <p class="find">
+          <a href="/forgot">비밀번호 찾기</a>
+        </p>
+        <p class="register">
+          <span>같이탈랴 서비스를 이용하고 싶다면?</span>
+          <a href="/signup">회원가입</a>
+        </p>
+      </form>
+    </div>
+  </body>
+  <script>
+    let emailInput = document.getElementById("email");
+    let passwordInput = document.getElementById("password");
+    let loginForm = document.getElementById("login");
+
+    function formCheck() {
+      if (emailInput.value == "") {
+        emailInput.focus();
+        alert("아이디를 입력해주세요!");
+        return false;
+      }
+      if (passwordInput.value == "") {
+        passwordInput.focus();
+        alert("비밀번호를 입력해주세요!");
+        return false;
+      }
+      loginForm.submit();
+    }
+
+    function enterPressed() {
+      if (event.keyCode == 13) {
+        formCheck();
+      }
+    }
+  </script>
+</html>

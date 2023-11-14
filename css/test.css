@@ -1,0 +1,77 @@
+* {
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo";
+}
+.body {
+  width: 100%;
+  margin-top: 10px;
+  position: absolute;
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  box-sizing: border-box;
+  border: 2px solid #ededed;
+  border-radius: 12px;
+  margin: 24px;
+  padding: 24px;
+  box-shadow: 0px 2px 5px gray;
+  width: 700px;
+}
+
+.titleContainer {
+  box-sizing: border-box;
+  border: 2px solid #ededed;
+  margin: 24px;
+  padding: 24px;
+  box-shadow: 0px 2px 5px gray;
+  width: 700px;
+}
+
+.titleContainer .title {
+  display: inline;
+}
+
+.titleContainer .userTemp {
+  display: inline;
+  margin-left: 5px;
+}
+
+.titleContainer .postDate {
+  margin-top: 10px;
+}
+
+.content .type {
+  background-color: #fff27d;
+  border: 1px;
+  border-radius: 10px;
+  display: inline-block;
+  height: 30px;
+  width: 100px;
+  margin-right: 5px;
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0px 2px 5px gray;
+}
+
+.content div {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.rideBtn {
+  height: 30px;
+  width: 100px;
+  background-color: #e45e4f;
+  border: 1px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0px 2px 5px gray;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
